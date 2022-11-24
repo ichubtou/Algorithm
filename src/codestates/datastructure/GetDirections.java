@@ -36,7 +36,6 @@ public class GetDirections {
 
     public static boolean getDirections(int[][] matrix, int from, int to) {
         // TODO:
-
         Queue<Integer> queue = new LinkedList<>();
         ArrayList<Integer> al = new ArrayList<>();
         queue.add(from);
