@@ -1,9 +1,6 @@
 package programmers.Greedy;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class MovingStuff {
     public static void main(String[] args) {
@@ -16,36 +13,22 @@ public class MovingStuff {
 
     public static int movingStuff(int[] stuff, int limit) {
         // TODO:
+        //배열 오름차순 정렬
+        Arrays.sort(stuff);
+        //stuff 배열에서 양끝 인덱스 선언
         int count = 0;
-        int box = 0;
-        int boxCount = 0;
-        List<Integer> list = Arrays.stream(stuff).boxed().collect(Collectors.toList());
-        Collections.sort(list);
-
-        while(list.size() != 0) {
-            for(int i = list.size() - 1; i > -1; i--) {
-                if(i == 0) {
-                    list.remove(0);
-                    boxCount = 1;
-                    count++;
-                    break;
-                }
-                box += list.get(0);
-                box += list.get(i);
-                boxCount++;
-                if (box <= limit && boxCount <= 2) {
-                    list.remove(0);
-                    list.remove(i - 1);
-                    boxCount = 1;
-                    count++;
-                    box = 0;
-                    break;
-                }
-                else if(box > limit && boxCount <=2) {
-                    boxCount = 1;
-                    box = 0;
-                }
+        int leftIdx = 0;
+        int rightIdx = stuff.length - 1;
+        //stuff 배열의 오른쪽 인덱스가 왼쪽 인덱스보다 클때까지
+        while(leftIdx <= rightIdx) {
+            //stuff 배열에서 제일 왼쪽과 오른쪽에서 하나씩 선택 해서 더함
+            //만약 더한 값이 limit 보다 작으면 인덱스를 각각 +1, -1 처리 더한 값이 limit 보다 크면 오른쪽 인덱스를 -1
+            if(stuff[leftIdx] + stuff[rightIdx] <= limit) {
+                leftIdx++;
             }
+            rightIdx--;
+            //계산이 끝나면 count++
+            count++;
         }
         return count;
     }
