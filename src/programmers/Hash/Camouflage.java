@@ -17,7 +17,7 @@ public class Camouflage {
         //의상의 종류마다의 갯수 파악
         //종류 각각의 경우의 수는 입지 않았을 경우 + 종류에 해당하는 개수이므로 종류마다의 경우의 수를 곱해주고 어느것도 입지 않았을 경우 -1 해주면 된다.
 
-        int answer;
+        int answer = 0;
         int count = 1;
         //해시맵 선언
         Map<String, Integer> hashmap = new HashMap<>();
